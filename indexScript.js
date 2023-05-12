@@ -1,3 +1,5 @@
+var colorThief = new ColorThief();
+
 var images = [
     {src: "assets/img1.png", meta: "A Brighter Summer Day (1991)", color: "#8B9F64"},
     {src: "assets/img2.png", meta: "To Live and Die in L.A. (1985)", color: "#81929D"},
@@ -15,13 +17,21 @@ var images = [
 var currentIndex=0;
 images.forEach(function(image) {
     var img = new Image();
+    img.addEventListener('load', function() {
+        console.log(img.src);
+        image.color = `rgb(${colorThief.getColor(img).join(',')})`
+        console.log(image.color)
+      });
     img.src = image.src;
   });
+
 function cycleBackground() {
     currentIndex = (currentIndex+1)%images.length
     document.body.style.backgroundImage = "url("+images[currentIndex].src+")";
+    var imgUrl = images[currentIndex].src
+
     document.getElementById("image-meta").innerText = images[currentIndex].meta;
-    
+
     const titleTextElements = document.getElementsByClassName("titletext");
     Array.from(titleTextElements).forEach((element) => {
     element.style.backgroundColor = images[currentIndex].color;

@@ -71,7 +71,7 @@ body{
     text-align: center;
     width:6vw;
     font-family: 'Rakkas', cursive;
-    /* font-size: 1.3em; */
+    font-size: 100%;
     flex-shrink: 0;
 }
 a {
