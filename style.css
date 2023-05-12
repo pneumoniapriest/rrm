@@ -3,16 +3,27 @@ body{
     padding: 0;
     background-image: url('assets/img1.png');
     background-size: cover;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(7px);
     color: #f7f7f7;
     transition: background-image 1s ease-out;
     font-family: 'Poppins', sans-serif;
 }
 #title {
-    height: 80vh;
+    height: 70%;
+}
+#palette{
+    height: 5%;
+    font-size: 0;
+}
+#palette span{
+    display: inline-block;
+    height:90%;
+    width: 7%;
+    margin: 0;
+    padding: 0;
 }
 #subtitle{
-    height: 20vh;
+    height: 20%;
 }
 #mainPage{
     display: flex;
