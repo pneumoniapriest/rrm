@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    background-image: url('img/bg/img1.png');
+    /* background-image: url("../img/bg/img1.png"); */
     background-size: cover;
     backdrop-filter: blur(7px);
     color: #f7f7f7;
@@ -49,21 +49,20 @@ body{
 }
 @font-face{
     font-family: myFont;
-    src: url("fonts\DeutscheZierschrift.ttf");
+    src: url("../fonts/DeutscheZierschrift.ttf");
 }
+
 .titletext {
-    background-color: #8B9F64;
+    /* background-color: #8B9F64; */
+    font-family: myFont;
+    font-weight: normal;
+    font-size: 6em;
     width: fit-content;
     padding-left: 2%;
     padding-right: 2%;
     margin-bottom:2%;
     margin-top:2%;
-    font-size: 6em;
-    transition: background-color 1s ease-out;
-}
-h1 {
-    font-family: myFont;
-    font-weight:normal;
+    transition: background-color 1s ease-in-out;
 }
 #navbar{
     /* background-color: #e5e5e5; */
