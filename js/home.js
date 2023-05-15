@@ -13,56 +13,64 @@ var images = [
     {src: "../img/bg/img10.png", meta: "YiYi (2000)", color: "#884A53", palette: []},
     {src: "../img/bg/img11.png", meta: "Mission Impossible: Rogue Nation (2015)", color: "#7D9072", palette: []},
     {src: "../img/bg/img12.png", meta: "Dunkirk (2017)", color: "#546865", palette: []},
+    {src: "../img/bg/img13.png", meta: "Phantom Thread (2017)", color: "", palette: []},
+    {src: "../img/bg/img14.png", meta: "Lost In Translation (2003)", color: "", palette: []},
+    {src: "../img/bg/img15.png", meta: "The Blues Brothers (1980)", color: "", palette: []}
 ]
 
-
-// Initial Page loading ----------------------------------------------
 var currentIndex=Math.floor(Math.random() * images.length);
-
-//Background Image + metadata display
-document.getElementById("image-meta").innerText = images[currentIndex].meta;
-document.body.style.backgroundImage = "url("+images[currentIndex].src+")";
-
-
-//Generating Intial Palette
-var img = new Image();
-img.addEventListener('load', function() {
-    var palette = colorThief.getPalette(img, 7);
-    images[currentIndex].palette = palette.map(function(color) {
-        return "rgb(" + color.join(",") + ")";
+// var currentIndex=Math.floor(Math.random() * images.length);
+document.addEventListener('DOMContentLoaded', function(){
+    images.forEach(function(image) {
+        var img = new Image();
+        img.addEventListener('load', function() {
+            colorThief.getPalette(img, 7).forEach(function(color) {
+                var rgb = "rgb(" + color.join(",") + ")";
+                image.palette.push(rgb);
+            });
+            });
+        img.src = image.src;
     });
-    setInitialBackground();
-});
-img.src = images[currentIndex].src
 
-//Color of the title text background
-var titleTextElements = document.getElementsByClassName("titletext");
-Array.from(titleTextElements).forEach((element) => {
-    element.style.backgroundColor = images[currentIndex].palette[2];
-});
-//Displaying the palette
-var i=0
-var colorSpans = document.querySelector("#palette").children;
-for (i=0;i<colorSpans.length;i++){
-    colorSpans[i].style.backgroundColor = images[currentIndex].palette[i]
-}
-
-
-//Generating palette for all other images.
-images.forEach(function(image) {
+    //Background Image + metadata display
+    document.getElementById("image-meta").innerText = images[currentIndex].meta;
+    document.body.style.backgroundImage = "url("+images[currentIndex].src+")";
+    
+    
+    //Generating Intial Palette
     var img = new Image();
     img.addEventListener('load', function() {
-        colorThief.getPalette(img, 7).forEach(function(color) {
-            var rgb = "rgb(" + color.join(",") + ")";
-            image.palette.push(rgb);
+        var palette = colorThief.getPalette(img, 7);
+        images[currentIndex].palette = palette.map(function(color) {
+            return "rgb(" + color.join(",") + ")";
         });
-        });
-    img.src = image.src;
+    });
+    img.src = images[currentIndex].src
+    
+    //Color of the title text background
+    var titleTextElements = document.getElementsByClassName("titletext");
+    console.log('Title background')
+    Array.from(titleTextElements).forEach((element) => {
+        element.style.backgroundColor = images[currentIndex].palette[2];
+    });
+
+    //Displaying the palette
+    var i=0
+    var colorSpans = document.querySelector("#palette").children;
+    for (i=0;i<colorSpans.length;i++){
+        colorSpans[i].style.backgroundColor = images[currentIndex].palette[i]
+    }
+    //----------------------------------------------------------------------------------
+    
+    //Generating palette for all other images.
 });
-//----------------------------------------------------------------------------------
+
 
 function cycleBackground() { //Function that cycles through the images (other than the first) and their color schemes
+    currentIndex = (currentIndex+1)%images.length
+
     document.body.style.backgroundImage = "url("+images[currentIndex].src+")";
+
     document.getElementById("image-meta").innerText = images[currentIndex].meta;
     
     const titleTextElements = document.getElementsByClassName("titletext");
@@ -76,8 +84,14 @@ function cycleBackground() { //Function that cycles through the images (other th
     for (i=0;i<colorSpans.length;i++){
         colorSpans[i].style.backgroundColor = images[currentIndex].palette[i]
     }
-    
-    console.log(currentIndex)
-    currentIndex = (currentIndex+1)%images.length
 }
-setInterval(cycleBackground,5000)
+//Cycles background every 5 sec
+let intervalId = setInterval(cycleBackground,5000)
+
+document.addEventListener('click',function(event){
+    if (event.target.tagName!=='A') {
+        clearInterval(intervalId)//stopping the old timer
+        cycleBackground();
+        intervalId = setInterval(cycleBackground, 5000); //starting a new timer
+    }
+});
