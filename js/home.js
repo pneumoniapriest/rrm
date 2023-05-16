@@ -80,6 +80,13 @@ function cycleBackground() { //Function that cycles through the images (other th
         element.style.backgroundColor = images[currentIndex].palette[2];
         // element.style.backgroundColor = images[currentIndex].color;
     });
+
+    let sortedColors = images[currentIndex].palette.sort((a, b) => {
+        let aHsl = hexToHsl(a);
+        let bHsl = hexToHsl(b);
+        return aHsl.l - bHsl.l;
+    });
+    document.body.style.backgroundColor = sortedColors[0];
     
     var i=0
     var colorSpans = document.querySelector("#palette").children;
@@ -136,4 +143,44 @@ function cycleLogo() {
     text2.classList.remove('translate');
   });
   
+//   HExington
+function hexToHsl(hex) {
+    // Convert hex to RGB
+    const r = parseInt(hex.substring(1, 3), 16) / 255;
+    const g = parseInt(hex.substring(3, 5), 16) / 255;
+    const b = parseInt(hex.substring(5, 7), 16) / 255;
+  
+    // Find the max and min values of R, G, B
+    const cmax = Math.max(r, g, b);
+    const cmin = Math.min(r, g, b);
+    const delta = cmax - cmin;
+  
+    // Calculate the H value
+    let h = 0;
+    if (delta === 0) {
+      h = 0;
+    } else if (cmax === r) {
+      h = ((g - b) / delta) % 6;
+    } else if (cmax === g) {
+      h = (b - r) / delta + 2;
+    } else {
+      h = (r - g) / delta + 4;
+    }
+    h = Math.round(h * 60);
+  
+    // Calculate the L value
+    const l = (cmax + cmin) / 2;
+  
+    // Calculate the S value
+    const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+  
+    return { h, s, l };
+  }
+  
+  // Sort the colors by their lightness value
+  const sortedColors = colors.sort((a, b) => {
+    const aHsl = hexToHsl(a);
+    const bHsl = hexToHsl(b);
+    return aHsl.l - bHsl.l;
+  });
   

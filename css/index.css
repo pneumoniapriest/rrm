@@ -8,7 +8,7 @@
     padding: 7vh 9.5% 7vh 9.5%;
     height: 84vh;
     width: 80%;
-    box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2);
+    /* box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2); */
 }
 
 #title {
@@ -24,7 +24,7 @@
     width: 7%;
     margin: 0;
     padding: 0;
-    transition: background-color 1s ease-out;
+    transition: background-color 0.5s ease-in-out;
 }
 #subtitle{
     height: 20%;
@@ -59,7 +59,7 @@
 }
 #logo1.translate, #logo2.translate{
     transform: translateY(-100%);
-    transition: transform 1s ease-in-out;
+    transition: transform 0.5s ease-in-out;
 }
 #logo2{
     position: absolute;
@@ -101,7 +101,7 @@
 }
 #text1.translate, #text2.translate{
     transform: translateY(-100%);
-    transition: transform 1s ease-in-out;
+    transition: transform 0.5s ease-in-out;
 }
 
 
@@ -115,7 +115,7 @@
     padding-right: 2%;
     margin-bottom:2%;
     margin-top:2%;
-    transition: background-color 1s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
 }
 #navbar{
     /* background-color: #e5e5e5; */
