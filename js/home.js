@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //Background Image + metadata display
     document.getElementById("image-meta").innerText = images[currentIndex].meta;
-    document.body.style.backgroundImage = "url("+images[currentIndex].src+")";
+    document.getElementById("mainPage").style.backgroundImage = "url("+images[currentIndex].src+")";
     
     
     //Generating Intial Palette
@@ -70,7 +70,7 @@ function cycleBackground() { //Function that cycles through the images (other th
     cycleLogo()
     currentIndex = (currentIndex+1)%images.length
 
-    document.body.style.backgroundImage = "url("+images[currentIndex].src+")";
+    document.getElementById("mainPage").style.backgroundImage = "url("+images[currentIndex].src+")";
 
     document.getElementById("image-meta").innerText = images[currentIndex].meta;
     
