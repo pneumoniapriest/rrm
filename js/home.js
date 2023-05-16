@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 function cycleBackground() { //Function that cycles through the images (other than the first) and their color schemes
+    cycleLogo()
     currentIndex = (currentIndex+1)%images.length
 
     document.body.style.backgroundImage = "url("+images[currentIndex].src+")";
@@ -89,9 +90,23 @@ function cycleBackground() { //Function that cycles through the images (other th
 let intervalId = setInterval(cycleBackground,5000)
 
 document.addEventListener('click',function(event){
-    if (event.target.tagName!=='A') {
+    if (event.target.tagName =='IMG') {
         clearInterval(intervalId)//stopping the old timer
         cycleBackground();
         intervalId = setInterval(cycleBackground, 5000); //starting a new timer
     }
 });
+
+function cycleLogo() {
+    let logo1=document.getElementById("logo1");
+    let logo2=document.getElementById("logo2")
+    logo1.classList.add("translate");
+    logo2.classList.add("translate");
+  }
+  logo1.addEventListener('transitionend', () => {
+    logo1.classList.remove('translate');
+  });
+  logo2.addEventListener('transitionend', () => {
+    logo2.classList.remove('translate');
+  });
+  

@@ -18,15 +18,21 @@
     <div id="mainPage">
     <header>
         <nav>
-            <div id="logo">
-                <a href="index.html"><img src="img/logo/Vectorlogo.png"></a>
+        <a href="index.html" style="margin:0;">
+            <div id="logo" onmouseover="cycleLogo()">
+                <!-- <a href="index.html"><img src="img/logo/Vectorlogo.png"></a> -->
+                <img id="logo1" src="img/logo/Vectorlogo.png">
+                <img id="logo2" src="img/logo/Vectorlogo.png">
             </div>
+        </a>
             <ul class="nav-links">
-                <li><a href = "about.html">About</a></li>
-                <li><a href = "contact.html">Contact</a></li>
+                <li><button><a href = "about.html">About</a></button></li>
+                <li><button><a href = "contact.html">Contact</a></button></li>
             </ul>
         </nav>
+        
     </header>
     </div>
+    <script src="js/reviews.js"></script>  
 </body>
 </html>

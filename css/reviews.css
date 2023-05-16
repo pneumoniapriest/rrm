@@ -1,10 +1,9 @@
-#logo img{
-    width:60%;
-}
 #mainPage {
     padding-top:5vh;
     padding-bottom: 5vh;
     height: 90vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .nav-links {
@@ -13,12 +12,45 @@
     width: 20%;
     list-style: none;
     margin: 0;
+    
 }
+
 .nav-links li {
     text-align: center;
     list-style: none;
     text-decoration: none;
 }
+
 .nav-links ul{
     list-style-type: none;
 }
+
+#logo{
+    /* width:auto; */
+    height:3vw;
+    justify-content: left;
+    /* align-content: center; */
+    flex-shrink: 0;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+  
+#logo1{
+    position: absolute;
+    bottom: 0%;
+    height: 100%;
+    object-fit: contain;
+}
+#logo1.translate, #logo2.translate{
+    transform: translateY(-100%);
+    transition: transform 0.5s ease-in-out;
+}
+#logo2{
+    position: absolute;
+    bottom: -100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+  
