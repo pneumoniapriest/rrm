@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
     //Background Image + metadata display
-    document.getElementById("image-meta").innerText = images[currentIndex].meta;
+    document.getElementById("text1").innerText = images[currentIndex].meta;
     document.getElementById("mainPage").style.backgroundImage = "url("+images[currentIndex].src+")";
     
     
@@ -72,7 +72,8 @@ function cycleBackground() { //Function that cycles through the images (other th
 
     document.getElementById("mainPage").style.backgroundImage = "url("+images[currentIndex].src+")";
 
-    document.getElementById("image-meta").innerText = images[currentIndex].meta;
+    document.getElementById("text2").innerText = images[currentIndex].meta;
+    cycleText();
     
     const titleTextElements = document.getElementsByClassName("titletext");
     Array.from(titleTextElements).forEach((element) => {
@@ -109,4 +110,30 @@ function cycleLogo() {
   logo2.addEventListener('transitionend', () => {
     logo2.classList.remove('translate');
   });
+
+  function cycleLogo() {
+    let logo1=document.getElementById("logo1");
+    let logo2=document.getElementById("logo2")
+    logo1.classList.add("translate");
+    logo2.classList.add("translate");
+  }
+  logo1.addEventListener('transitionend', () => {
+    logo1.classList.remove('translate');
+    logo2.classList.remove('translate');
+  });
+  
+  function cycleText() {
+    let text1=document.getElementById("text1");
+    let text2=document.getElementById("text2")
+    text1.classList.add("translate");
+    text2.classList.add("translate");
+  }
+  text1.addEventListener('transitionend', () => {
+    temp = document.getElementById("text1").textContent;
+    document.getElementById("text1").textContent = document.getElementById("text2").textContent;
+    document.getElementById("text2").textContent = temp;
+    text1.classList.remove('translate');
+    text2.classList.remove('translate');
+  });
+  
   
