@@ -1,12 +1,15 @@
 body {
     background-color: #f7f7f7;
+    margin:0;
+    padding:0;
 }
 #mainPage {
-    padding-top:5vh;
-    padding-bottom: 5vh;
-    height: 90vh;
     display: flex;
     flex-direction: column;
+    padding: 7vh 9.5% 7vh 9.5%;
+    height: 84vh;
+    width: 80%;
+
 }
 
 .nav-links {

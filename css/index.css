@@ -5,7 +5,9 @@
     background-size: cover;
     background-position: center center;
     transition: background-image 1s ease-in-out;
-    /* background-clip: content-box; */
+    padding: 7vh 9.5% 7vh 9.5%;
+    height: 84vh;
+    width: 80%;
 }
 
 #title {

@@ -27,14 +27,8 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 #mainPage {
-    padding-left:11.5%;
-    padding-right:11.5%;
-    padding-top: 9vh;
-    padding-bottom: 9vh;
-    margin-left:0.5%;
-    margin-right:0.5%;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
+    padding: 9vh 11.5% 9vh 11.5%;
+    margin: 1vh 0.5% 1vh 0.5%;
     display: flex;
     flex-direction: row;
     height: 80vh;
