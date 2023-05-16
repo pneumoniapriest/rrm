@@ -8,6 +8,7 @@
     padding: 7vh 9.5% 7vh 9.5%;
     height: 84vh;
     width: 80%;
+    box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 #title {
@@ -68,7 +69,7 @@
 }
 #logo1.translate, #logo2.translate{
     transform: translateY(-100%);
-    transition: transform 0.5s ease-in-out;
+    transition: transform 1s ease-in-out;
 }
 #logo2{
     position: absolute;

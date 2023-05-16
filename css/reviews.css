@@ -1,5 +1,5 @@
 body {
-    background-color: #f7f7f7;
+    background-color: #b5b5b5;
     margin:0;
     padding:0;
 }
@@ -9,6 +9,7 @@ body {
     padding: 7vh 9.5% 7vh 9.5%;
     height: 84vh;
     width: 80%;
+    box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2);
 
 }
 
