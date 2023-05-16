@@ -4,9 +4,7 @@ function cycleLogo() {
   logo1.classList.add("translate");
   logo2.classList.add("translate");
 }
-logo1.addEventListener('transitionend', () => {
-  logo1.classList.remove('translate');
-});
 logo2.addEventListener('transitionend', () => {
+  logo1.classList.remove('translate');
   logo2.classList.remove('translate');
 });
