@@ -19,71 +19,84 @@ var images = [
 ]
 
 var currentIndex=Math.floor(Math.random() * images.length);
-document.addEventListener('DOMContentLoaded', function(){
-    images.forEach(function(image) {
-        var img = new Image();
-        img.addEventListener('load', function() {
-            colorThief.getPalette(img, 7).forEach(function(color) {
-                var rgb = "rgb(" + color.join(",") + ")";
-                image.palette.push(rgb);
-            });
-            });
-        img.src = image.src;
-    });
+// document.addEventListener('DOMContentLoaded', function(){
+//     images.forEach(function(image) {
+//         var img = new Image();
+//         img.addEventListener('load', function() {
+//             colorThief.getPalette(img, 7).forEach(function(color) {
+//                 var rgb = "rgb(" + color.join(",") + ")";
+//                 image.palette.push(rgb);
+//             });
+//             });
+//         img.src = image.src;
+//     });
 
-    //Background Image + metadata display
-    document.getElementById("image-meta").innerText = images[currentIndex].meta;
-    document.body.style.backgroundImage = "url("+images[currentIndex].src+")";
+//     //Background Image + metadata display
+//     document.getElementById("image-meta").innerText = images[currentIndex].meta;
+//     document.body.style.backgroundImage = "url("+images[currentIndex].src+")";
     
     
-    //Generating Intial Palette
-    var img = new Image();
-    img.addEventListener('load', function() {
-        var palette = colorThief.getPalette(img, 7);
-        images[currentIndex].palette = palette.map(function(color) {
-            return "rgb(" + color.join(",") + ")";
-        });
-    });
-    img.src = images[currentIndex].src
+//     //Generating Intial Palette
+//     var img = new Image();
+//     img.addEventListener('load', function() {
+//         var palette = colorThief.getPalette(img, 7);
+//         images[currentIndex].palette = palette.map(function(color) {
+//             return "rgb(" + color.join(",") + ")";
+//         });
+//     });
+//     img.src = images[currentIndex].src
     
-    //Color of the title text background
-    var titleTextElements = document.getElementsByClassName("titletext");
-    console.log('Title background')
-    Array.from(titleTextElements).forEach((element) => {
-        element.style.backgroundColor = images[currentIndex].palette[2];
-    });
+//     //Color of the title text background
+//     var titleTextElements = document.getElementsByClassName("titletext");
+//     console.log('Title background')
+//     Array.from(titleTextElements).forEach((element) => {
+//         element.style.backgroundColor = images[currentIndex].palette[2];
+//     });
 
-    //Displaying the palette
-    var i=0
-    var colorSpans = document.querySelector("#palette").children;
-    for (i=0;i<colorSpans.length;i++){
-        colorSpans[i].style.backgroundColor = images[currentIndex].palette[i]
-    }
-    //----------------------------------------------------------------------------------
+//     //Displaying the palette
+//     var i=0
+//     var colorSpans = document.querySelector("#palette").children;
+//     for (i=0;i<colorSpans.length;i++){
+//         colorSpans[i].style.backgroundColor = images[currentIndex].palette[i]
+//     }
+//     //----------------------------------------------------------------------------------
     
-    //Generating palette for all other images.
-});
+//     //Generating palette for all other images.
+// });
 
+cycleBackground()
 
 function cycleBackground() { //Function that cycles through the images (other than the first) and their color schemes
-    cycleLogo()
     currentIndex = (currentIndex+1)%images.length
-
     document.body.style.backgroundImage = "url("+images[currentIndex].src+")";
+    
+    //generate palette for the current loaded image and change colors in the display.
+    var image = new Image();
+    image.src = images[currentIndex].src;
+    image.addEventListener('load', function() { //when the image is loaded -> happens after the background image src is update (done above)
+        cycleLogo()
+        // cycleText()
+        if (images[currentIndex].palette.length === 0){
+            console.log("palette generating");
+            colorThief.getPalette(image, 7).forEach(function(color) {
+            var rgb = "rgb(" + color.join(",") + ")";
+            images[currentIndex].palette.push(rgb);
+            });
+        }
+        //background color of titletext
+        let titleTextElements = document.getElementsByClassName("titletext");
+        Array.from(titleTextElements).forEach((element) => {
+            element.style.backgroundColor = images[currentIndex].palette[2];
+        });
+        //displaying the palette
+        var i=0
+        var colorSpans = document.querySelector("#palette").children;
+        for (i=0;i<colorSpans.length;i++){
+            colorSpans[i].style.backgroundColor = images[currentIndex].palette[i]
+        }
 
-    document.getElementById("image-meta").innerText = images[currentIndex].meta;
-    
-    const titleTextElements = document.getElementsByClassName("titletext");
-    Array.from(titleTextElements).forEach((element) => {
-        element.style.backgroundColor = images[currentIndex].palette[2];
-        // element.style.backgroundColor = images[currentIndex].color;
     });
-    
-    var i=0
-    var colorSpans = document.querySelector("#palette").children;
-    for (i=0;i<colorSpans.length;i++){
-        colorSpans[i].style.backgroundColor = images[currentIndex].palette[i]
-    }
+    document.getElementById("image-meta").innerText = images[currentIndex].meta;
 }
 //Cycles background every 5 sec
 let intervalId = setInterval(cycleBackground,5000)
@@ -97,6 +110,7 @@ document.addEventListener('click',function(event){
 });
 
 function cycleLogo() {
+    console.log("cycling logo")
     let logo1=document.getElementById("logo1");
     let logo2=document.getElementById("logo2")
     logo1.classList.add("translate");
