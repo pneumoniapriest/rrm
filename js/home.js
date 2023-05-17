@@ -19,52 +19,6 @@ var images = [
 ]
 
 var currentIndex=Math.floor(Math.random() * images.length);
-// document.addEventListener('DOMContentLoaded', function(){
-//     images.forEach(function(image) {
-//         var img = new Image();
-//         img.addEventListener('load', function() {
-//             colorThief.getPalette(img, 7).forEach(function(color) {
-//                 var rgb = "rgb(" + color.join(",") + ")";
-//                 image.palette.push(rgb);
-//             });
-//             });
-//         img.src = image.src;
-//     });
-
-//     //Background Image + metadata display
-//     document.getElementById("image-meta").innerText = images[currentIndex].meta;
-//     document.body.style.backgroundImage = "url("+images[currentIndex].src+")";
-    
-    
-//     //Generating Intial Palette
-//     var img = new Image();
-//     img.addEventListener('load', function() {
-//         var palette = colorThief.getPalette(img, 7);
-//         images[currentIndex].palette = palette.map(function(color) {
-//             return "rgb(" + color.join(",") + ")";
-//         });
-//     });
-//     img.src = images[currentIndex].src
-    
-//     //Color of the title text background
-//     var titleTextElements = document.getElementsByClassName("titletext");
-//     console.log('Title background')
-//     Array.from(titleTextElements).forEach((element) => {
-//         element.style.backgroundColor = images[currentIndex].palette[2];
-//     });
-
-//     //Displaying the palette
-//     var i=0
-//     var colorSpans = document.querySelector("#palette").children;
-//     for (i=0;i<colorSpans.length;i++){
-//         colorSpans[i].style.backgroundColor = images[currentIndex].palette[i]
-//     }
-//     //----------------------------------------------------------------------------------
-    
-//     //Generating palette for all other images.
-// });
-
-cycleBackground()
 
 function cycleBackground() { //Function that cycles through the images (other than the first) and their color schemes
     currentIndex = (currentIndex+1)%images.length
@@ -74,8 +28,9 @@ function cycleBackground() { //Function that cycles through the images (other th
     var image = new Image();
     image.src = images[currentIndex].src;
     image.addEventListener('load', function() { //when the image is loaded -> happens after the background image src is update (done above)
-        cycleLogo()
-        // cycleText()
+        cycleLogo();
+        document.getElementById("text2").innerText = images[currentIndex].meta;
+        cycleText();
         if (images[currentIndex].palette.length === 0){
             console.log("palette generating");
             colorThief.getPalette(image, 7).forEach(function(color) {
@@ -94,10 +49,10 @@ function cycleBackground() { //Function that cycles through the images (other th
         for (i=0;i<colorSpans.length;i++){
             colorSpans[i].style.backgroundColor = images[currentIndex].palette[i]
         }
-
     });
-    document.getElementById("image-meta").innerText = images[currentIndex].meta;
 }
+//Sets up the first time.
+cycleBackground()
 //Cycles background every 5 sec
 let intervalId = setInterval(cycleBackground,5000)
 
@@ -110,42 +65,30 @@ document.addEventListener('click',function(event){
 });
 
 function cycleLogo() {
-    console.log("cycling logo")
     let logo1=document.getElementById("logo1");
     let logo2=document.getElementById("logo2")
     logo1.classList.add("translate");
     logo2.classList.add("translate");
-  }
-  logo1.addEventListener('transitionend', () => {
+}
+
+logo1.addEventListener('transitionend', () => {
     logo1.classList.remove('translate');
-  });
-  logo2.addEventListener('transitionend', () => {
     logo2.classList.remove('translate');
+});
+
+  function cycleText() {
+    let text1=document.getElementById("text1");
+    let text2=document.getElementById("text2")
+    text1.classList.add("translate");
+    text2.classList.add("translate");
+  }
+  text1.addEventListener('transitionend', () => {
+    temp = document.getElementById("text1").textContent;
+    document.getElementById("text1").textContent = document.getElementById("text2").textContent;
+    document.getElementById("text2").textContent = temp;
+    text1.classList.remove('translate');
+    text2.classList.remove('translate');
   });
 
-  function cycleLogo() {
-    let logo1=document.getElementById("logo1");
-    let logo2=document.getElementById("logo2")
-    logo1.classList.add("translate");
-    logo2.classList.add("translate");
-  }
-  logo1.addEventListener('transitionend', () => {
-    logo1.classList.remove('translate');
-    logo2.classList.remove('translate');
-  });
-  
-//   function cycleText() {
-//     let text1=document.getElementById("text1");
-//     let text2=document.getElementById("text2")
-//     text1.classList.add("translate");
-//     text2.classList.add("translate");
-//   }
-//   text1.addEventListener('transitionend', () => {
-//     temp = document.getElementById("text1").textContent;
-//     document.getElementById("text1").textContent = document.getElementById("text2").textContent;
-//     document.getElementById("text2").textContent = temp;
-//     text1.classList.remove('translate');
-//     text2.classList.remove('translate');
-//   });
   
   
