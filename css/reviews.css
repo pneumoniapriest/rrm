@@ -1,5 +1,5 @@
 #mainPage {
-    padding-top:5vh;
+    padding-top: 5vh;
     padding-bottom: 5vh;
     height: 90vh;
     display: flex;
@@ -7,12 +7,12 @@
 }
 
 .nav-links {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     width: 20%;
     list-style: none;
     margin: 0;
-    
+
 }
 
 .nav-links li {
@@ -21,13 +21,13 @@
     text-decoration: none;
 }
 
-.nav-links ul{
+.nav-links ul {
     list-style-type: none;
 }
 
-#logo{
+#logo {
     /* width:auto; */
-    height:3vw;
+    height: 3vw;
     justify-content: left;
     /* align-content: center; */
     flex-shrink: 0;
@@ -35,22 +35,23 @@
     position: relative;
     overflow: hidden;
 }
-  
-#logo1{
+
+#logo1 {
     position: absolute;
     bottom: 0%;
     height: 100%;
     object-fit: contain;
 }
-#logo1.translate, #logo2.translate{
+
+#logo1.translate,
+#logo2.translate {
     transform: translateY(-100%);
     transition: transform 0.5s ease-in-out;
 }
-#logo2{
+
+#logo2 {
     position: absolute;
     bottom: -100%;
     height: 100%;
     object-fit: contain;
 }
-
-  
